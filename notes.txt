@@ -1,0 +1,56 @@
+Project Description:
+Develop a simplified IP Address Management Tool. ISPs need tools to manage and allocate IP addresses to customers,
+track used and unused IPs, and ensure proper allocation without conflicts.
+
+Technical Requirements:
+
+Use either Java or Python for backend development.
+Implement a database (preferably MySQL) to store IP addresses, their statuses (e.g., available, allocated, reserved), and associated customer information.
+Develop a basic API to manage these IP addresses.
+Ensure proper handling of common networking and IP address validations.
+
+Endpoints:
+
+Allocate IP Address
+
+Method: POST
+Endpoint: /ip/allocate
+Request Body:
+json
+Copy code
+{
+    "customer_name": "John Doe",
+    "email": "johndoe@email.com"
+}
+Response:
+Status 201 for success, with allocated IP details.
+Status 400 for bad request.
+Status 500 if no IPs are available.
+Release IP Address
+
+Method: PUT
+Endpoint: /ip/release/{ipAddress}
+Response:
+Status 200 for success.
+Status 404 if IP not found or not allocated.
+List Allocated IPs
+
+Method: GET
+Endpoint: /ip/allocated
+Response:
+Status 200 with list of allocated IPs and associated customer details.
+List Available IPs
+
+Method: GET
+Endpoint: /ip/available
+Response:
+Status 200 with a list of available IPs.
+Bonus Points (Optional):
+
+Implement IP range filtering in the List APIs (e.g., get all allocated IPs in the range 192.168.1.10 to 192.168.1.20).
+Implement a basic authentication or API key system to secure the endpoints.
+Properly handle edge cases, like:
+Attempting to allocate an already allocated IP.
+Releasing an IP that's not yet allocated.
+Provide an IP subnet calculator tool, which takes an IP and a subnet mask and returns details like the network address, broadcast address, and usable IP range.
+Provide a Docker-file to containerize the application.
