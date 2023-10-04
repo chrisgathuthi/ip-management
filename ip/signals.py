@@ -13,4 +13,5 @@ def change_ip_status(sender, created, instance, *args, **kwargs):
         print(instance.__dict__)
         instance_ip = IpAddress.objects.get(id = instance.ip_address.id)
         instance_ip.status = "allocated"
+        print(instance_ip.status)
         instance_ip.save()

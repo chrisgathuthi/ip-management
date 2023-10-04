@@ -1,7 +1,28 @@
 from rest_framework import serializers
 from rest_framework import status
+from django.contrib.auth import get_user_model
 from .models import IpAddress, CustomerInfo
 
+
+class UserSerializer(serializers.ModelSerializer):
+    
+    """serialize user model"""
+
+    class Meta:
+        model = get_user_model()
+        fields = ["id", "email", "username", "first_name", "last_name","password"]
+    
+    def create(self, validated_data):
+        User= get_user_model()
+        user = User(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"]
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 class WriteIpAddressSerializer(serializers.ModelSerializer):
 
@@ -31,13 +52,15 @@ class ReadIpAddressSerializer(serializers.ModelSerializer):
             instance.save()
             return instance
 
-class CustomerInfoSerializer(serializers.ModelSerializer):
+class IpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IpAddress
+        fields = ['address', 'status']
 
-    """customer information serializer"""
-    ip_address = ReadIpAddressSerializer(read_only=True)
+
+class CustomerSerializer(serializers.ModelSerializer):
+    ip_address = serializers.StringRelatedField() #>> THIS EXTRACTS THE IP ADDRESS INSTEAD OF RETURNING THE ID
     class Meta:
         model = CustomerInfo
-        fields = ["ip_address", "customer_name", "email"]
-        depth = 2
-        
+        fields = ['customer_name', 'email', 'ip_address']
 

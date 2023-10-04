@@ -26,21 +26,21 @@ Response:
 Status 201 for success, with allocated IP details.
 Status 400 for bad request.
 Status 500 if no IPs are available.
-Release IP Address
 
+Release IP Address
 Method: PUT
 Endpoint: /ip/release/{ipAddress}
 Response:
 Status 200 for success.
 Status 404 if IP not found or not allocated.
-List Allocated IPs
 
+List Allocated IPs
 Method: GET
 Endpoint: /ip/allocated
 Response:
 Status 200 with list of allocated IPs and associated customer details.
-List Available IPs
 
+List Available IPs
 Method: GET
 Endpoint: /ip/available
 Response:
