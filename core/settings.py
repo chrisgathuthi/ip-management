@@ -140,8 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # default setting
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_AUTHENTICATION_CLASS": ["rest_framework.authentication.TokenAuthentication"],
-    "DEFAULT_PERMISSION_CLASS": ['rest_framework.permissions.IsAuthenticatedOrReadOnly',]
+    # "DEFAULT_AUTHENTICATION_CLASS": ["rest_framework.authentication.TokenAuthentication"],
+    # "DEFAULT_PERMISSION_CLASS": ['rest_framework.permissions.IsAuthenticated']
 }
 SPECTACULAR_SETTINGS = {
     "TITLE": "Ip managemenent"

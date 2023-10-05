@@ -59,7 +59,7 @@ class IpSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    ip_address = serializers.StringRelatedField() #>> THIS EXTRACTS THE IP ADDRESS INSTEAD OF RETURNING THE ID
+    ip_address = serializers.StringRelatedField() 
     class Meta:
         model = CustomerInfo
         fields = ['customer_name', 'email', 'ip_address']
